@@ -134,30 +134,23 @@
     'https://github.com/saraswatdey/new-year-greetings/blob/main/images/6.gif?raw=true',
     'https://github.com/saraswatdey/new-year-greetings/blob/main/images/7.gif?raw=true',
         ];
+function generateGreeting() {
+    const firstName = document.getElementById('firstNameInput').value.trim();
 
-        function updateLocalTime() {
-            const now = new Date();
-            const localTime = now.toLocaleTimeString('en-US', { timeZoneName: 'short' });
-            document.getElementById('time').innerText = `Time: ${localTime}`;
-        }
+    if (!firstName) {
+        alert("Please enter your name!");
+        return;
+    }
 
-        function generateGreeting() {
-            const firstName = document.getElementById('firstNameInput').value;
+    const greetingText = `🎉 Saraswat wishes you a Happy New Year, ${firstName}! 🎉`;
+    const randomImage = images[Math.floor(Math.random() * images.length)];
 
-            if (!firstName) {
-                alert("Please enter your name!");
-                return;
-            }
+    document.getElementById('greetingText').innerText = greetingText;
+    document.getElementById('background').style.backgroundImage = `url(${randomImage})`;
+    document.getElementById('greeting-container').style.display = "block";
 
-            const greetingText = `🎉 Saraswat wishes you a Happy New Year, ${firstName}! 🎉`;
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            document.getElementById('greetingText').innerText = greetingText;
-            document.getElementById('background').style.backgroundImage = `url(${randomImage})`;
-            document.getElementById('greeting-container').style.display = "block";
-
-            updateLocalTime();
-        }
+    updateLocalTime();
+}
 
         // Automatically update the time every second
         setInterval(updateLocalTime, 1000);
